@@ -1,7 +1,7 @@
 All of my games I made for the 20 Games Challenge will be stored here.
 
-## My Progress So Far:
+# My Progress So Far:
 
-# Pong (Completed)
+## Pong (Completed)
 
 - 
