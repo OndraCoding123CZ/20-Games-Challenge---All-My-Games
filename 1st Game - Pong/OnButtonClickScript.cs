@@ -1,4 +1,5 @@
 using TMPro;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,6 +17,22 @@ public class OnButtonClickScript : MonoBehaviour
     [SerializeField] PongBallMovement pongBallMovement;
     [SerializeField] EnemyAIScript enemyAIScript;
     [SerializeField] PlayerMovement playerMovement;
+
+    List<GameObject> gameObjectsToSetActive = new List<GameObject>();
+    List<GameObject> gameObjectsToSetFalse = new List<GameObject>();
+
+    void Start()
+    {
+
+        gameObjectsToSetActive.Add(PongBall);
+        gameObjectsToSetActive.Add(displayText1);
+        gameObjectsToSetActive.Add(displayText2);
+
+        gameObjectsToSetFalse.Add(gameOverText);
+        gameObjectsToSetFalse.Add(ScreenCover);
+        gameObjectsToSetFalse.Add(gameObject);
+
+    }
     
     public void OnButtonClick()
     {
@@ -23,12 +40,19 @@ public class OnButtonClickScript : MonoBehaviour
         if (PongBall != null && gameOverText != null)
         {
 
-            PongBall.SetActive(true);
-            displayText1.SetActive(true);
-            displayText2.SetActive(true);
-            gameOverText.SetActive(false);
-            ScreenCover.SetActive(false);
-            gameObject.SetActive(false);
+            foreach (GameObject obj in gameObjectsToSetActive)
+            {
+
+                obj.SetActive(true);
+
+            }
+
+            foreach (GameObject obj in gameObjectsToSetFalse)
+            {
+
+                obj.SetActive(false);
+
+            }
 
             playerMovement.catchedPongBalls = 0f;
             enemyAIScript.catchedPongBalls = 0f;
