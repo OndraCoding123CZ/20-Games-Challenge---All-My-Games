@@ -22,6 +22,8 @@ All of my games I made in Unity for the 20 Games Challenge will be stored here.
 - An arcade game where there is a PlayerSpaceShip that can move left to right, and then 5 enemies first cross the screen from left to right and then move up and down and send bullets down towards the PlayerSpaceShip.
 - You start off with 3 lives, each time a bullet hits the PlayerSpaceShip, they lose one life. Once they have 0 lives, a play again screen shows up asking if they want to play the game again.
 - There is also a score, each time the PlayerSpaceShip hits one of the enemies with its bullets 10 is added to the score and the enemy is destroyed.
+- A mothership crosses the screen from left to right, if the player hits it with one of its bullets, 30 is added to the score as a bonus.
+- Since the original hardware the game ran on still struggled to render all the sprites and that, so the game lagged a lot. I added that feature too so the game would feel more realistic.
 
                                                                                --
 
