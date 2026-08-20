@@ -7,8 +7,6 @@ public class PlayerSpaceShipMovement : MonoBehaviour
     public bool isMoving = false;
     public float bulletMoveSpeed = 4f;
 
-    [SerializeField] GameManagerScript gameManagerScript;
-
     void Update()
     {
 
