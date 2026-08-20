@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+
     [SerializeField] public float stopPositionX;
     [SerializeField] public float stopPositionY;
     [SerializeField] public float enemyMoveSpeed;
@@ -13,7 +14,10 @@ public class EnemyScript : MonoBehaviour
     private bool hasReachedStopY = false;
     public bool bulletLaunchedByEnemy = false;
 
-    [SerializeField] GameObject Bullet;
+    bool canBeMovedDown = false;
+    bool canBeMovedUp = false;
+
+    [SerializeField] GameObject EnemyBullet;
     GameObject EnemyNose;
 
     Vector2 bulletSpawnPosition;
@@ -21,7 +25,7 @@ public class EnemyScript : MonoBehaviour
     public List<GameObject> EnemyBullets = new List<GameObject>();
 
     GameManagerScript gameManagerScript;
-    BulletScript bulletScript;
+    EnemyBulletScript bulletScript;
     GameObject PlayerSpaceShip;
 
     [SerializeField] float bulletStartingSpeed = 5f;
@@ -32,7 +36,7 @@ public class EnemyScript : MonoBehaviour
 
         PlayerSpaceShip = GameObject.FindWithTag("Player");
         gameManagerScript = FindAnyObjectByType<GameManagerScript>();
-        bulletScript = FindAnyObjectByType<BulletScript>();
+        bulletScript = FindAnyObjectByType<EnemyBulletScript>();
 
         StartCoroutine(FireLoop());
 
@@ -55,21 +59,55 @@ public class EnemyScript : MonoBehaviour
             }
         }
 
-        //if (hasReachedStopX && !hasReachedStopY)
-        //{
-        //transform.Translate(Vector3.down * enemyMoveSpeed * Time.deltaTime);
+        StartCoroutine(MoveEnemiesUpAndDown());
 
-        //if (transform.position.y <= stopPositionY)
-        //{
-
-        //transform.position = new Vector3(transform.position.x, stopPositionY, transform.position.z);
-        //hasReachedStopY = true;
-
-        //}
-        //}
     }
 
-    IEnumerator FireLoop()
+    IEnumerator MoveEnemiesUpAndDown()
+    {
+
+        while (true)
+        {
+
+            if (hasReachedStopX)
+            {
+
+                stopPositionY = 2f;
+
+                transform.Translate(Vector3.down * enemyMoveSpeed * Time.deltaTime);
+
+                if (transform.position.y <= stopPositionY)
+                {
+
+                    transform.position = new Vector3(transform.position.x, stopPositionY, transform.position.z);
+                    hasReachedStopY = true;
+
+                }
+
+                yield return new WaitForSeconds(3f);
+
+                if (hasReachedStopY)
+                {
+
+                    stopPositionY = 4f;
+
+                    transform.Translate(Vector3.up * enemyMoveSpeed * Time.deltaTime);
+
+                    if (transform.position.y >= stopPositionY)
+                    {
+
+                        transform.position = new Vector3(transform.position.x, stopPositionY, transform.position.z);
+
+                    }
+                }
+            }
+
+            yield return new WaitForSeconds(3f);
+
+        }
+    }
+
+    public IEnumerator FireLoop()
     {
 
         while (true)
@@ -91,19 +129,21 @@ public class EnemyScript : MonoBehaviour
             EnemyNose = FindAnyObjectByType<GameObject>();
 
             Vector2 playerPosition = PlayerSpaceShip.transform.position;
-            bulletSpawnPosition = EnemyNose.transform.position;
+            bulletSpawnPosition = transform.position;
 
-            var bullet = Instantiate(Bullet, bulletSpawnPosition, Quaternion.identity);
-            bullet.GetComponent<BulletScript>();
+            GameObject enemyBullet = Instantiate(EnemyBullet, bulletSpawnPosition, Quaternion.identity);
+            enemyBullet.GetComponent<EnemyBulletScript>();
             bulletLaunchedByEnemy = true;
 
             yield return new WaitForSeconds(0.5f);
 
-            bullet.GetComponent<BulletScript>().Init(playerPosition, bulletStartingSpeed);
+            enemyBullet.GetComponent<EnemyBulletScript>().Init(playerPosition, bulletStartingSpeed);
 
-            EnemyBullets.Add(bullet);
+            EnemyBullets.Add(enemyBullet);
 
             yield return new WaitForSeconds(3f);
+
+            Destroy(enemyBullet);
 
         }
         else
