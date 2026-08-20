@@ -23,8 +23,8 @@ All of my games I made in Unity for the 20 Games Challenge will be stored here.
 - You start off with 3 lives, each time a bullet hits the PlayerSpaceShip, they lose one life. Once they have 0 lives, a play again screen shows up asking if they want to play the game again.
 - There is also a score, each time the PlayerSpaceShip hits one of the enemies with its bullets 10 is added to the score and the enemy is destroyed.
 
----
+-
 
-- Personal Note To Myself And To People Reading This: The code of this game is kinda messy which I have to agree, since I felt like this game was a lot harder than the last one. At one point I felt like rewriting the game from scratch because the code had gone so messy and nothing was working, and here I am I managed to fix it and complete the whole game, so I am kind of thanking myself for not giving up.
+- Personal Note To Myself And To People Reading This: The code of this game (Space Invaders) is kinda messy which I have to agree, since I felt like this game was a lot harder than the last one. At one point I felt like rewriting the game from scratch because the code had gone so messy and nothing was working, and here I am I managed to fix it and complete the whole game, so I am kind of thanking myself for not giving up.
 
 --------------------------------------------------
