@@ -1,8 +1,8 @@
 All of my games I made in Unity for the 20 Games Challenge will be stored here.
 
-# IMPORTANT NOTE AS OF 26/08/2026/READ BEFORE READING FURTHER:
+# IMPORTANT NOTE AS OF 26/08/2026
 
-## I have now decided to move each game I make into its own repository, the games I already made will stay here, but any new ones have its own repositary
+## I have now decided to move each game I make into its own repository, the games I already made will stay here, but any new ones have its own repository
 
 -------------------------------------------------
 
